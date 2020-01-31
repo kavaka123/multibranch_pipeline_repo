@@ -1,0 +1,37 @@
+node {
+// Testin env properties
+stage ('ENV Variables') {
+    echo env.BUILD_NUMBER
+    echo env.JOB_NAME
+    echo env.NODE_NAME
+    echo env.BUILD_TAG
+    echo "${WORKSPACE}"
+    echo "${JENKINS_HOME}"
+    echo "${JENKINS_URL}"
+}
+
+
+// Testing params
+stage ('Params') {
+    if (params.PROCEED) {
+        echo "Proceeding next.."
+    }
+    
+    if (params.YOUR_NAME == 'Aditya') {
+        echo "Hello Admin Aditya"
+    } else {
+        echo "Hello Mr." + params.YOUR_NAME
+    }
+    
+}
+
+stage ('Current Build params') {
+    echo "${currentBuild.nextBuild}"
+    echo "${currentBuild.absoluteUrl}"
+    echo "${currentBuild.buildVariables}"
+    echo "${currentBuild.fullProjectName}"
+    echo "Total duration of build: ${currentBuild.durationString}"
+}
+
+}
+
